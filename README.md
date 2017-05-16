@@ -2,9 +2,9 @@
 
 The Graph Stream Generator (GSG) generates multiple streams of graph vertices and edges according to subgraph patterns that can be partitioned across different streams.
 
-Author: Larry Holder, School of EECS, Washington State University, email: holder@eecs.wsu.edu.
+Author: Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@eecs.wsu.edu.
 
-##Input File
+## Input File
 
 The input file is in JSON format. An example is in the file input.json.
 There are a few required global parameters to the Graph Stream Generator (GSG).
@@ -27,7 +27,7 @@ A pattern describes a subgraph (set of vertices and edges) that are probabilisti
 * **vertices**: Array of vertex entries, described below.
 * **edges**: Array of edge entries, described below.
 
-####Vertex
+#### Vertex
 
 A vertex appearing in the *vertices* array of a pattern consists of the following properties in a JSON object.
 
@@ -37,7 +37,7 @@ A vertex appearing in the *vertices* array of a pattern consists of the followin
 
 A new vertex is written to a stream just before the earliest edge that involves this vertex is written to the stream. If edges assigned to different streams connect to the same vertex, then that same vertex is written to each stream.
 
-####Edge
+#### Edge
 
 An edge appearing in the *edges* array of a pattern consists of the following properties in a JSON object.
 
@@ -54,11 +54,11 @@ Each edge in a pattern can be assigned to a different stream, except that edges 
 
 In the event that vertices and edges are scheduled to appear beyond the *duration* of the stream generation, stream generation will continue until all scheduled vertices and edges are written to streams. No new patterns are trigger beyond the *duration* of the stream generation.
 
-##Output Stream Files
+## Output Stream Files
 
 A file named *outputFilePrefix*-s*N* is created for each stream 1 to *N*. Each stream file contains a JSON array of vertex and edge instances, as described below.
 
-###Vertex Instance
+### Vertex Instance
 
 A vertex instance is a JSON object with name "vertex" and whose value is a JSON object with the following properties.
 
@@ -66,7 +66,7 @@ A vertex instance is a JSON object with name "vertex" and whose value is a JSON 
 * **attributes**: A JSON object of name/value pairs, where both the name and value are strings. These are merely copied from the attributes defined for this vertex in the input pattern.
 * **timeStamp**: A string representing the time at which this vertex was written to the stream. The format is dictated by the *outputTimeFormat* parameter.
 
-###Edge Instance
+### Edge Instance
 
 An edge instance is a JSON object with name "edge" and whose value is a JSON
 object with the following properties.
@@ -79,7 +79,7 @@ object with the following properties.
 * **timeStamp**: A string representing the time at which this edge was written
  to the stream. The format is dictated by the *outputTimeFormat* parameter.
 
-##Output Instances File
+## Output Instances File
 
 A single file named *outputFilePrefix*-insts is created that contains a JSON array of pattern instances for all tracked patterns. Each pattern instance is a JSON object with the following properties.
 
@@ -89,7 +89,7 @@ A single file named *outputFilePrefix*-insts is created that contains a JSON arr
 
 The instances file provides the ground truth of all the full patterns that appear across all the graph streams.
 
-##Questions?
+## Questions?
 
-Contact: Dr. Larry Holder, School of EECS, Washington State University, email: holder@eecs.wsu.edu.
+Contact: Dr. Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@eecs.wsu.edu.
 
