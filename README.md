@@ -4,6 +4,8 @@ The Graph Stream Generator (GSG) generates multiple streams of graph vertices an
 
 Author: Dr. Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@eecs.wsu.edu.
 
+Support: This material is based upon work supported by the National Science Foundation under Grant No. 1646640.
+
 ## Input File
 
 The input file is in JSON format. An example is in the file input.json.
