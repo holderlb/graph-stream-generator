@@ -8,7 +8,7 @@ Support: This material is based upon work supported by the National Science Foun
 
 ## Input File
 
-The input file is in JSON format. An example is in the file input.json.
+The input file is in JSON format. An example is in the file *input.json*.
 There are a few required global parameters to the Graph Stream Generator (GSG).
 
 * **numStreams**: The number of graph streams to generate.
