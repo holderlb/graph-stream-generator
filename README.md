@@ -1,4 +1,4 @@
-# graph-stream-generator
+# Graph Stream Generator
 
 The Graph Stream Generator (GSG) generates multiple streams of graph vertices and edges according to subgraph patterns that can be partitioned across different streams.
 
