@@ -24,12 +24,22 @@ global gParameters
 global gPatterns
 global gStreamFiles
 global gInstancesFile
+global gStreamVertexFiles
+global gStreamEdgeFiles
+global gFirstVertexInstance
+global gFirstEdgeInstances
 global gWroteAnInstance # True if wrote at least one instance already
 global gStreamVertices  # list where gStreamVertices[i] = list of vertices in stream i+1
 global gStreamSchedules # list of streams, where gStreamSchedules[i] = list of scheduled vertices and edges for stream i+1
 global gStreamWrittenTo # list of Booleans, where gStreamWrittenTo[i] = True if some vertex written to stream
 global gNumVertices     # total number of unique vertices written to streams
 global gNumEdges        # total number of edges written to streams
+global gOutFormat       # Output graph serialzation Format, support values are JSON (default), TXT, CSV
+
+# ----- Initialize Global variables -----
+gOutFormat = "JSON"
+gFirstEdgeInstances = True
+gFirstVertexInstance = True
 
 
 # ----- Parsing Functions -----
@@ -121,23 +131,103 @@ def OpenFiles():
     global gStreamFiles
     global gInstancesFile
     global gWroteAnInstance
+    global gStreamVertexFiles
+    global gStreamEdgeFiles
+    global gStreamEdgeFiles
+    global gFirstVertexInstance
+    global gFirstEdgeInstances
+    
     gStreamFiles = []
+    gStreamVertexFiles = []
+    gStreamEdgeFiles = []
+    gFirstVertexInstance = []
+    gFirstEdgeInstances = []
     for streamNum in range(0,gParameters.numStreams):
-        outputFileName = gParameters.outputFilePrefix + '-s' + str(streamNum+1)
-        outputFile = open(outputFileName, 'w')
-        outputFile.write('[\n') # array of vertices and edges
-        gStreamFiles.append(outputFile)
+        if gOutFormat == "GDF":
+
+            #Get Vertex File
+            outputVertexFileName = gParameters.outputFilePrefix + '-vs' + str(streamNum + 1)
+            outputVertexFile = open(outputVertexFileName, 'w')
+            gStreamVertexFiles.append(outputVertexFile)
+            gFirstVertexInstance.append(True)
+
+            #Get Edge Files
+            outputEdgeFileName = gParameters.outputFilePrefix + '-es' + str(streamNum + 1)
+            outputEdgeFile = open(outputEdgeFileName, 'w')
+            gStreamEdgeFiles.append(outputEdgeFile)
+            gFirstEdgeInstances.append(True)
+
+            #Get GDF File
+            outputFileName = gParameters.outputFilePrefix + '-s' + str(streamNum+1) + '.gdf'
+            outputFile = open(outputFileName, 'w')
+            gStreamFiles.append(outputFile)
+
+        elif gOutFormat == "TXT":
+            outputFileName = gParameters.outputFilePrefix + '-s' + str(streamNum + 1)
+            outputFile = open(outputVertexFileName, 'w')
+
+        else:
+            outputFileName = gParameters.outputFilePrefix + '-s' + str(streamNum+1)
+            outputFile = open(outputFileName, 'w')
+            outputFile.write('[\n') # array of vertices and edges
+            gStreamFiles.append(outputFile)
+
     instancesFileName = gParameters.outputFilePrefix + '-insts'
     gInstancesFile = open(instancesFileName, 'w')
     gInstancesFile.write('[\n') # array of pattern instances
     gWroteAnInstance = False
-    
+
+def CleanFiles():
+    global gStreamFiles
+    global gInstancesFile
+    global gStreamVertexFiles
+    global gStreamEdgeFiles
+    global gOutFormat
+
+    if(gOutFormat == "GDF"):
+        for streamIndex in range(0, gParameters.numStreams):
+
+            streamFile = gStreamFiles[streamIndex]
+            vertexFile = gStreamVertexFiles[streamIndex]
+            edgeFile = gStreamEdgeFiles[streamIndex]
+
+            # Flush Files before closing them
+            vertexFile.flush()
+            edgeFile.flush()
+
+            # Close Temporary Vertex and Edges files to reopen them in read mode
+            vertexFile.close
+            edgeFile.close
+
+            vertexFileName = gParameters.outputFilePrefix + '-vs' + str(streamIndex + 1)
+            newvertexFile = open(vertexFileName, 'r')
+
+            edgeFileName = gParameters.outputFilePrefix + '-es' + str(streamIndex + 1)
+            newedgeFile = open(edgeFileName, 'r')
+
+
+            streamFile.write(newvertexFile.read())
+            streamFile.write("\n")
+            streamFile.write(newedgeFile.read())
+
+            newvertexFile.close()
+            newedgeFile.close()
+
+
 def CloseFiles():
     global gStreamFiles
     global gInstancesFile
+    global gStreamVertexFiles
+    global gStreamEdgeFiles
+
     for streamFile in gStreamFiles:
-        streamFile.write('\n]\n')
+        if gOutFormat == "JSON":
+            streamFile.write('\n]\n')
         streamFile.close()
+    for vertexFile in gStreamVertexFiles:
+        vertexFile.close()
+    for edgeFile in gStreamEdgeFiles:
+        edgeFile.close()
     gInstancesFile.write('\n]\n')
     gInstancesFile.close()
         
@@ -325,24 +415,99 @@ def ProcessStreamSchedules(timeUnit):
                     WriteEdgeInstanceToStream(edgeInstance, streamIndex+1)
                     gStreamSchedules[streamIndex].remove(edgeInstance)
 
-def WriteVertexInstanceToStream(vertexInstance, streamNum):
+def WriteTXTVertexInstanceToStream(vertexInstance, streamNum):
+    global gStreamFiles
+
+    streamFile = gStreamFiles[streamNum - 1]
+    streamFile.write('v ' + str(vertexInstance.id))
+    streamFile.write(DictToTXTString(vertexInstance.attributes))
+    streamFile.write('\t' + 'timeStamp' + ': ' + TimeStr(vertexInstance.streamCreationTimes[streamNum]))
+
+def WriteGDFVertexInstanceToStream(vertexInstance, streamNum):
+    global gStreamVertexFiles
+    global gFirstVertexInstance
+
+    vertexFile = gStreamVertexFiles[streamNum - 1]
+
+    if gFirstVertexInstance[streamNum - 1]:
+        vertexFile.write('nodedef>name VARCHAR')
+        vertexFile.write(DictToGDFAttributeHeading(vertexInstance.attributes))
+        vertexFile.write(',timeStamp VARCHAR')
+        gFirstVertexInstance[streamNum - 1] = False
+    vertexFile.write('\n')
+    vertexFile.write(str(vertexInstance.id) + ',')
+    vertexFile.write(DictToGDFString(vertexInstance.attributes, gFirstVertexInstance, ''))
+    vertexFile.write(',' + TimeStr(vertexInstance.streamCreationTimes[streamNum]))
+
+
+def WriteJSONVertexInstanceToStream(vertexInstance, streamNum):
     global gStreamFiles
     global gStreamWrittenTo
-    streamFile = gStreamFiles[streamNum-1]
-    if gStreamWrittenTo[streamNum-1]:
+
+    streamFile = gStreamFiles[streamNum - 1]
+
+    if gStreamWrittenTo[streamNum - 1]:
         streamFile.write(',\n')
     else:
-        gStreamWrittenTo[streamNum-1] = True
+        gStreamWrittenTo[streamNum - 1] = True
+
     streamFile.write('  {"vertex": {\n')
     streamFile.write('     "id": "' + str(vertexInstance.id) + '",\n')
     streamFile.write('     "attributes": ' + DictToJSONString(vertexInstance.attributes) + ',\n')
     streamFile.write('     "timeStamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
 
-def WriteEdgeInstanceToStream(edgeInstance, streamNum):
+
+def WriteVertexInstanceToStream(vertexInstance, streamNum):
+
+    if gOutFormat == "TXT":
+        WriteTXTVertexInstanceToStream(vertexInstance,streamNum)
+    elif gOutFormat == "GDF":
+        WriteGDFVertexInstanceToStream(vertexInstance,streamNum)
+    else:
+        WriteJSONVertexInstanceToStream(vertexInstance, streamNum)
+
+
+def WriteTXTEdgeInstanceToStream(edgeInstance, streamNum):
     global gStreamFiles
-    global gStreamWrittenTo
-    streamFile = gStreamFiles[streamNum-1]
-    streamFile.write(',\n') # some vertices must have already been written
+
+    streamFile = gStreamFiles[streamNum - 1]
+    streamFile.write('e ' + str(edgeInstance.id))
+    streamFile.write('\t' + 'source: ' +str(edgeInstance.source))
+    streamFile.write('\t' + 'target: ' + str(edgeInstance.target))
+    streamFile.write(DictToTXTString(edgeInstance.attributes))
+    if edgeInstance.directed:
+        streamFile.write('\t' +'directed: true,')
+    else:
+        streamFile.write('\t' +'directed: false,')
+    streamFile.write('\t' +'timeStamp: ' + TimeStr(edgeInstance.creationTime))
+
+
+def WriteGDFEdgeInstanceToStream(edgeInstance, streamNum):
+    global gFirstEdgeInstances
+    global gStreamEdgeFiles
+
+    edgeFile = gStreamEdgeFiles[streamNum - 1]
+    if gFirstEdgeInstances[streamNum - 1]:
+        edgeFile.write('edgedef>node1 VARCHAR,node2 VARCHAR')
+        edgeFile.write(DictToGDFAttributeHeading(edgeInstance.attributes))
+        edgeFile.write(',directed VARCHAR')
+        gFirstEdgeInstances[streamNum - 1] = False
+    edgeFile.write('\n')
+    edgeFile.write(str(edgeInstance.source))
+    edgeFile.write(',' + str(edgeInstance.target))
+    edgeFile.write(',' + str(edgeInstance.id))
+    edgeFile.write(DictToGDFString(edgeInstance.attributes, gFirstEdgeInstances, ''))
+    if edgeInstance.directed:
+        edgeFile.write(',' + 'true')
+    else:
+        edgeFile.write(',' + 'false')
+
+
+def WriteJSONEdgeInstanceToStream(edgeInstance, streamNum):
+    global gStreamFiles
+
+    streamFile = gStreamFiles[streamNum - 1]
+    streamFile.write(',\n')  # some vertices must have already been written
     streamFile.write('  {"edge": {\n')
     streamFile.write('     "id": "' + str(edgeInstance.id) + '",\n')
     streamFile.write('     "source": "' + str(edgeInstance.source) + '",\n')
@@ -353,6 +518,15 @@ def WriteEdgeInstanceToStream(edgeInstance, streamNum):
     else:
         streamFile.write('     "directed": "false",\n')
     streamFile.write('     "timeStamp": "' + TimeStr(edgeInstance.creationTime) + '"}}')
+
+def WriteEdgeInstanceToStream(edgeInstance, streamNum):
+
+    if gOutFormat == "TXT":
+        WriteTXTEdgeInstanceToStream(edgeInstance, streamNum)
+    elif gOutFormat == "GDF":
+        WriteGDFEdgeInstanceToStream(edgeInstance, streamNum)
+    else:
+        WriteJSONEdgeInstanceToStream(edgeInstance, streamNum)
 
 # Convert timeUnit to string according to output time format
 def TimeStr(timeUnit):
@@ -369,18 +543,22 @@ def TimeStr(timeUnit):
 def main():
     global gParameters
     global gPatterns
+    global gOutFormat
+
     inputFileName = sys.argv[1]
     with open(inputFileName) as inputFile:
         jsonData = json.load(inputFile)
     gParameters = Parameters()
     gParameters.parseFromJSON(jsonData)
     print('Graph Stream Generator v1.0\n')
+    gOutFormat = gParameters.outputFileFormat
     gParameters.prettyprint()
     ParsePatterns(jsonData['patterns'])
     for pattern in gPatterns:
         pattern.prettyprint()
     OpenFiles()
     GenerateStreams()
+    CleanFiles()
     CloseFiles()
     
 if __name__ == "__main__":

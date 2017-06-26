@@ -18,6 +18,7 @@ class Parameters:
         self.duration = 100
         self.outputTimeFormat = "units"
         self.outputFilePrefix = "out"
+        self.outputFileFormat = "JSON"
     
     def parseFromJSON(self,jsonData):
         self.numStreams = int(jsonData['numStreams'])
@@ -26,6 +27,7 @@ class Parameters:
         self.duration = int(jsonData['duration'])
         self.outputTimeFormat = jsonData['outputTimeFormat']
         self.outputFilePrefix = jsonData['outputFilePrefix']
+        self.outputFileFormat = jsonData['outputFileFormat']
     
     def prettyprint(self, tab = ''):
         print(tab + 'Parameters:')
@@ -34,7 +36,9 @@ class Parameters:
         print(tab + '  Start time = ' + self.startTime.strftime('%Y-%m-%d %H:%M:%S'))
         print(tab + '  Duration = ' + str(self.duration))
         print(tab + '  Output time format = ' + self.outputTimeFormat)
-        print(tab + '  Output file prefix = ' + self.outputFilePrefix + '\n')
+        print(tab + '  Output file prefix = ' + self.outputFilePrefix)
+        print(tab + '  Output file format = ' + self.outputFileFormat + '\n')
+
 
 class Pattern:
     def __init__(self):
@@ -153,3 +157,33 @@ def DictToJSONString(dict):
             dictStr += ('"' + str(key) + '": "' + str(value) + '"')
     dictStr += '}'
     return dictStr
+
+def DictToTXTString(dict):
+    dictStr = ''
+    if dict:
+        first = True
+        for key,value in dict.items():
+            if first:
+                first = False
+            else:
+                dictStr += ', '
+            dictStr += '\t' + (str(key) + ': ' + str(value))
+    return dictStr
+
+def DictToGDFString(dict,firstInstance,sectionHeading):
+    dictStr = ''
+    if dict:
+        first = True
+        for key,value in dict.items():
+            if first:
+                first = False
+            else:
+                dictStr += ','
+            dictStr += str(value)
+    return dictStr
+
+def DictToGDFAttributeHeading(dict):
+    sectionHeading = ''
+    for key in dict.keys():
+        sectionHeading += ', ' + key + ' VARCHAR'
+    return sectionHeading

@@ -5,6 +5,7 @@
   "duration": "10",
   "outputTimeFormat": "units",
   "outputFilePrefix": "test",
+  "outputFileFormat": "GDF",
   "patterns": [
     {
       "id": "P123",
