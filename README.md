@@ -2,7 +2,7 @@
 
 The Graph Stream Generator (GSG) generates multiple streams of graph vertices and edges according to subgraph patterns that can be partitioned across different streams.
 
-Author: Dr. Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@eecs.wsu.edu.
+Authors: Dr. Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@wsu.edu. Sumit Purohit, Pacific Northwest National Laboratory, email: sumit.purohit@pnnl.gov.
 
 Support: This material is based upon work supported by the National Science Foundation under Grant No. 1646640.
 
@@ -93,5 +93,5 @@ The instances file provides the ground truth of all the full patterns that appea
 
 ## Questions?
 
-Contact: Dr. Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@eecs.wsu.edu.
+Contact: Dr. Larry Holder, School of Electrical Engineering and Computer Science, Washington State University, email: holder@wsu.edu.
 
