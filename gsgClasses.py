@@ -13,6 +13,7 @@ from datetime import datetime
 class Parameters:
     def __init__(self):
         self.numStreams = 1
+        self.streamBackGroundModels = ["Random"]
         self.secondsPerUnitTime = 1
         self.startTime = datetime.now()
         self.duration = 100
@@ -21,15 +22,17 @@ class Parameters:
     
     def parseFromJSON(self,jsonData):
         self.numStreams = int(jsonData['numStreams'])
+        self.streamBackGroundModels = jsonData['streamBackGroundModels']
         self.secondsPerUnitTime = int(jsonData['secondsPerUnitTime'])
         self.startTime = datetime.strptime(jsonData['startTime'], '%Y-%m-%d %H:%M:%S')
         self.duration = int(jsonData['duration'])
         self.outputTimeFormat = jsonData['outputTimeFormat']
         self.outputFilePrefix = jsonData['outputFilePrefix']
-    
+
     def prettyprint(self, tab = ''):
         print(tab + 'Parameters:')
         print(tab + '  Number of streams = ' + str(self.numStreams))
+        print(tab + '  Graph Stream Models = ' + ', '.join(map(str, self.streamBackGroundModels)))
         print(tab + '  Seconds per unit time = ' + str(self.secondsPerUnitTime))
         print(tab + '  Start time = ' + self.startTime.strftime('%Y-%m-%d %H:%M:%S'))
         print(tab + '  Duration = ' + str(self.duration))

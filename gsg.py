@@ -48,7 +48,7 @@ def ParseVertices(jsonData):
         vertices.append(vertex)
     return vertices
 
-def ParseEdges(jsonData, vertices):
+def ParseEdges(jsonData, vertices, streamNum=None):
     global gParameters
     edges = []
     for jsonEdge in jsonData:
@@ -71,7 +71,10 @@ def ParseEdges(jsonData, vertices):
         if ((edge.minOffset < 0) or (edge.minOffset > edge.maxOffset)):
             print("Error: Incorrect offsets in edge " + edge.id)
             sys.exit()
-        edge.streamNum = int(jsonEdge['streamNum'])
+        if streamNum is None:
+            edge.streamNum = int(jsonEdge['streamNum'])
+        else:
+            edge.streamNum = int(streamNum)
         if ((edge.streamNum < 1) or (edge.streamNum > gParameters.numStreams)):
             print("Error: streamNum out of range in edge " + edge.id)
             sys.exit()
@@ -98,6 +101,35 @@ def ParsePatterns(jsonData):
         pattern.edges = ParseEdges(jsonPattern['edges'], pattern.vertices)
         if ValidPattern(pattern):
             gPatterns.append(pattern)
+
+def ParseBackgroundPatterns(streamBackGroundModelsList):
+    print('Parsing patterns...')
+    global gPatterns
+    for index, modelKey in enumerate(streamBackGroundModelsList):
+        inputFileName = str(modelKey) + ".json"
+        with open(inputFileName) as inputFile:
+            jsonData = json.load(inputFile)
+            ParseAppendPatterns(jsonData['patterns'], int(index) +1)
+
+def ParseAppendPatterns(jsonData, streamNum):
+    print('Parsing patterns...')
+    global gPatterns
+    for jsonPattern in jsonData:
+        pattern = Pattern()
+        pattern.id = jsonPattern['id']
+        if (jsonPattern['track'] == "true"):
+            pattern.track = True
+        else:
+            pattern.track = False
+        pattern.probability = float(jsonPattern['probability'])
+        if ((pattern.probability < 0.0) or (pattern.probability > 1.0)):
+            print("Error: probability out of range for pattern " + pattern.id)
+            sys.exit()
+        pattern.vertices = ParseVertices(jsonPattern['vertices'])
+        pattern.edges = ParseEdges(jsonPattern['edges'], pattern.vertices,streamNum)
+        if ValidPattern(pattern):
+            gPatterns.append(pattern)
+
 
 def ValidPattern(pattern):
     # Check that all edges to an old vertex in same stream
@@ -377,6 +409,7 @@ def main():
     print('Graph Stream Generator v1.0\n')
     gParameters.prettyprint()
     ParsePatterns(jsonData['patterns'])
+    ParseBackgroundPatterns(jsonData['streamBackGroundModels'])
     for pattern in gPatterns:
         pattern.prettyprint()
     OpenFiles()
