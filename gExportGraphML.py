@@ -15,10 +15,10 @@ def generateGraphML(inputFileName):
                  'http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">\n')
 
     target.write('<key id="label" for="node" attr.name="label" attr.type="string"/>\n')
-    target.write('<key id="timeStamp" for="node" attr.name="timeStamp" attr.type="string"/>\n')
+    target.write('<key id="timestamp" for="node" attr.name="timestamp" attr.type="string"/>\n')
 
     target.write('<key id="label" for="edge" attr.name="label" attr.type="string"/>\n')
-    target.write('<key id="timeStamp" for="edge" attr.name="timeStamp" attr.type="string"/>\n')
+    target.write('<key id="timestamp" for="edge" attr.name="timestamp" attr.type="string"/>\n')
     target.write('<key id="directed" for="edge" attr.name="directed" attr.type="string"/>\n')
 
     target.write('<graph id="GSG_V1" edgedefault="directed">\n')
@@ -41,12 +41,12 @@ def generateGraphML(inputFileName):
                         target.write(twoIndent +'<data key='+ key.strip() + '>' + val.strip() + '</data>\n')
 
                     # Get Timestamp
-                    timestampLine = next(infile) #     "timeStamp": "5"}},\n
-                    vTimestamp = timestampLine.split('"timeStamp": ')[1][:-4]
-                    # Very last timeStamp entry does not end with "," which make the subscript invalid
+                    timestampLine = next(infile) #     "timestamp": "5"}},\n
+                    vTimestamp = timestampLine.split('"timestamp": ')[1][:-4]
+                    # Very last timestamp entry does not end with "," which make the subscript invalid
                     if vTimestamp.endswith('"') == False:
                         vTimestamp = vTimestamp + '"'
-                    target.write(twoIndent +'<data key="timeStamp">' + vTimestamp + '</data>\n')
+                    target.write(twoIndent +'<data key="timestamp">' + vTimestamp + '</data>\n')
                     target.write(oneIndent +'</node>\n')
 
                 elif line.startswith('  {"edge": {'):
@@ -79,13 +79,13 @@ def generateGraphML(inputFileName):
                     target.write(twoIndent +'<data key="directed">' + eDir + '</data>\n')
 
                     # Get Timestamp
-                    timestampLine = next(infile) #     "timeStamp": "5"}},\n
-                    eTimestamp = timestampLine.split('"timeStamp": ')[1][:-4]
+                    timestampLine = next(infile) #     "timestamp": "5"}},\n
+                    eTimestamp = timestampLine.split('"timestamp": ')[1][:-4]
 
-                    # Very last timeStamp entry does not end with "," which make the subscript invalid
+                    # Very last timestamp entry does not end with "," which make the subscript invalid
                     if eTimestamp.endswith('"') == False:
                         eTimestamp = eTimestamp + '"'
-                    target.write(twoIndent +'<data key="timeStamp">' + eTimestamp + '</data>\n')
+                    target.write(twoIndent +'<data key="timestamp">' + eTimestamp + '</data>\n')
 
                     # End of Edge
                     target.write(oneIndent + '</edge>\n')

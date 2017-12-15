@@ -336,7 +336,7 @@ def WriteVertexInstanceToStream(vertexInstance, streamNum):
     streamFile.write('  {"vertex": {\n')
     streamFile.write('     "id": "' + str(vertexInstance.id) + '",\n')
     streamFile.write('     "attributes": ' + DictToJSONString(vertexInstance.attributes) + ',\n')
-    streamFile.write('     "timeStamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
+    streamFile.write('     "timestamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
 
 def WriteEdgeInstanceToStream(edgeInstance, streamNum):
     global gStreamFiles
@@ -352,7 +352,7 @@ def WriteEdgeInstanceToStream(edgeInstance, streamNum):
         streamFile.write('     "directed": "true",\n')
     else:
         streamFile.write('     "directed": "false",\n')
-    streamFile.write('     "timeStamp": "' + TimeStr(edgeInstance.creationTime) + '"}}')
+    streamFile.write('     "timestamp": "' + TimeStr(edgeInstance.creationTime) + '"}}')
 
 # Convert timeUnit to string according to output time format
 def TimeStr(timeUnit):
