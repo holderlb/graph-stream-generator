@@ -2,15 +2,15 @@
   "numStreams": "1",
   "secondsPerUnitTime": "1",
   "startTime": "2017-05-11 14:00:00",
-  "duration": "15900",
+  "duration": "28510000",
   "outputTimeFormat": "units",
-  "outputFilePrefix": "twitterSTM20K_10kTime",
+  "outputFilePrefix": "twitterSTM20K_28510000Time",
   "streamBackGroundModels" : [],
   "patterns": [
-{
+    {
 "id": "M0",
 "track": "true",
-"probability" :"0.006759663",
+"probability" :"0.006759663245867388",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -18,14 +18,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "888", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "888", "maxOffset": "1894", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M1",
 "track": "true",
-"probability" :"0.004117249",
+"probability" :"0.004117249431573772",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -33,14 +33,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "1013", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "1013", "maxOffset": "2298", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M2",
 "track": "true",
-"probability" :"0.006022245",
+"probability" :"0.0060836969212806485",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -48,14 +48,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "91", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "91", "maxOffset": "373", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M3",
 "track": "true",
-"probability" :"0.090886745",
+"probability" :"0.09082529343083635",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -63,14 +63,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "425", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "425", "maxOffset": "3408", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M4",
 "track": "true",
-"probability" :"0.003748541",
+"probability" :"0.003748540527253733",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -78,14 +78,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "1365", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "1365", "maxOffset": "2375", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M5",
 "track": "true",
-"probability" :"0.001413384",
+"probability" :"0.0014133841332268173",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -93,29 +93,29 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "cb" , "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "1140", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "1140", "maxOffset": "1624", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M6",
 "track": "true",
-"probability" :"0.001843545",
+"probability" :"0.0017206415534935168",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "b", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
+{"id": "b", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1427", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "1427", "maxOffset": "2850", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M7",
 "track": "true",
-"probability" :"0.007128372",
+"probability" :"0.007251275118294107",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -123,14 +123,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1244", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "1244", "maxOffset": "2649", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M8",
 "track": "true",
-"probability" :"6.15E-5",
+"probability" :"6.145148405333988E-5",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -138,8 +138,8 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1124", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "1124", "maxOffset": "2360", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
@@ -153,8 +153,8 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1153", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "1153", "maxOffset": "3294", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
@@ -162,20 +162,20 @@
 "track": "true",
 "probability" :"0.0",
 "vertices": [
-{"id": "a", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
+{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1814", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "1814", "maxOffset": "2512", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M11",
 "track": "true",
-"probability" :"0.001904996",
+"probability" :"0.0019049960056535366",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -183,14 +183,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "bc" , "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1296", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "1296", "maxOffset": "2257", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M12",
 "track": "true",
-"probability" :"1.23E-4",
+"probability" :"1.2290296810667977E-4",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -198,8 +198,8 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "1391", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "1391", "maxOffset": "2656", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
@@ -213,8 +213,8 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "1333", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "1333", "maxOffset": "2464", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
@@ -222,20 +222,20 @@
 "track": "true",
 "probability" :"0.0",
 "vertices": [
-{"id": "a", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
+{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "1569", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "1569", "maxOffset": "2690", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M15",
 "track": "true",
-"probability" :"9.83E-4",
+"probability" :"9.832237448534381E-4",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -243,14 +243,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "2257", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "2257", "maxOffset": "2842", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M16",
 "track": "true",
-"probability" :"0.005039022",
+"probability" :"0.005039021692373871",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -265,37 +265,37 @@
 {
 "id": "M17",
 "track": "true",
-"probability" :"0.00331838",
+"probability" :"0.003318380138880354",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
-{"id": "b", "new": "true", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
+{"id": "b", "new": "false", "attributes": {"label": "motivator"}},
+{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ca" , "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "2781", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "2781", "maxOffset": "3343", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M18",
 "track": "true",
-"probability" :"5.53E-4",
+"probability" :"5.53063356480059E-4",
 "vertices": [
-{"id": "a", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
+{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1616", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ab", "source": "a", "target": "b", "directed": "true", "minOffset": "1616", "maxOffset": "2930", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M19",
 "track": "true",
-"probability" :"0.00829595",
+"probability" :"0.008295950347200884",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -303,14 +303,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1193", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ba", "source": "b", "target": "a", "directed": "true", "minOffset": "1193", "maxOffset": "2465", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M20",
 "track": "true",
-"probability" :"0.009770786",
+"probability" :"0.009770785964481042",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -318,29 +318,29 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1914", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "1914", "maxOffset": "2729", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M21",
 "track": "true",
-"probability" :"0.016407546",
+"probability" :"0.01640754624224175",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
-{"id": "b", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
+{"id": "b", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1661", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "1661", "maxOffset": "2690", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M22",
 "track": "true",
-"probability" :"0.007066921",
+"probability" :"0.007066920666134087",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -348,14 +348,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ac" , "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "1699", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "1699", "maxOffset": "2711", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M23",
 "track": "true",
-"probability" :"0.23849321",
+"probability" :"0.2384932096110121",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -370,7 +370,7 @@
 {
 "id": "M24",
 "track": "true",
-"probability" :"0.002703865",
+"probability" :"0.002703865298346955",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -378,14 +378,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "936", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "936", "maxOffset": "2954", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M25",
 "track": "true",
-"probability" :"0.001044675",
+"probability" :"0.0010446752289067782",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -393,14 +393,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "1003", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "1003", "maxOffset": "2476", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M26",
 "track": "true",
-"probability" :"6.15E-4",
+"probability" :"6.145148405333989E-4",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -408,14 +408,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "894", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "894", "maxOffset": "2794", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M27",
 "track": "true",
-"probability" :"0.002519511",
+"probability" :"0.0025195108461869356",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -423,14 +423,14 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ba" , "source": "b", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "987", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "987", "maxOffset": "2641", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M28",
 "track": "true",
-"probability" :"0.002519511",
+"probability" :"0.0025195108461869356",
 "vertices": [
 {"id": "a", "new": "true", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
@@ -438,44 +438,44 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "804", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ac", "source": "a", "target": "c", "directed": "true", "minOffset": "804", "maxOffset": "2684", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M29",
 "track": "true",
-"probability" :"4.3E-4",
+"probability" :"4.301603883733792E-4",
 "vertices": [
-{"id": "a", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "true", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
+{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "635", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "ca", "source": "c", "target": "a", "directed": "true", "minOffset": "635", "maxOffset": "2645", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M30",
 "track": "true",
-"probability" :"5.53E-4",
+"probability" :"5.53063356480059E-4",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "b", "new": "false", "attributes": {"label": "motivator"}},
-{"id": "c", "new": "true", "attributes": {"label": "motivator"}}
+{"id": "b", "new": "true", "attributes": {"label": "motivator"}},
+{"id": "c", "new": "false", "attributes": {"label": "motivator"}}
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "562", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "bc", "source": "b", "target": "c", "directed": "true", "minOffset": "562", "maxOffset": "2434", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 },
 {
 "id": "M31",
 "track": "true",
-"probability" :"0.001474836",
+"probability" :"0.0014748356172801574",
 "vertices": [
 {"id": "a", "new": "false", "attributes": {"label": "motivator"}},
 {"id": "b", "new": "false", "attributes": {"label": "motivator"}},
@@ -483,8 +483,8 @@
 ],
 "edges": [
 {"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}},
-{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "leadership"}}
+{"id": "ab" , "source": "a", "target": "b", "directed": "true", "minOffset": "0", "maxOffset": "527", "streamNum": "1", "attributes": {"label": "leadership"}},
+{"id": "cb", "source": "c", "target": "b", "directed": "true", "minOffset": "527", "maxOffset": "1682", "streamNum": "1", "attributes": {"label": "leadership"}}
 ]
 }
 
