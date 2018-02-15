@@ -1,0 +1,73 @@
+{
+  "numStreams": "3",
+  "secondsPerUnitTime": "1",
+  "startTime": "2017-05-11 14:00:00",
+  "duration": "10",
+  "outputTimeFormat": "units",
+  "outputFilePrefix": "test",
+  "patterns": [
+    {
+      "id": "P123",
+      "track": "true",
+      "probability": "0.5",
+      "vertices": [
+        {"id": "v1", "new": "true", "attributes": {"label": "v1"}},
+        {"id": "v2", "new": "true", "attributes": {"label": "v2"}},
+        {"id": "v3", "new": "true", "attributes": {"label": "v3"}}
+      ],
+      "edges": [
+        {"id": "e12", "source": "v1", "target": "v2", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "e12"}},
+        {"id": "e13", "source": "v1", "target": "v3", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "2", "attributes": {"label": "e13"}},
+        {"id": "e23", "source": "v2", "target": "v3", "directed": "false", "minOffset": "5", "maxOffset": "7", "streamNum": "3", "attributes": {"label": "e23"}}
+      ]
+    },
+    {
+      "id": "P1",
+      "track": "false",
+      "probability": "0.9",
+      "vertices": [
+        {"id": "v4", "new": "true", "attributes": {"label": "v4"}},
+        {"id": "v5", "new": "true", "attributes": {"label": "v5"}}
+      ],
+      "edges": [
+        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "e45"}}
+      ]
+    },
+    {
+      "id": "P2",
+      "track": "false",
+      "probability": "0.5",
+      "vertices": [
+        {"id": "v6", "new": "true", "attributes": {"label": "v6"}},
+        {"id": "v7", "new": "true", "attributes": {"label": "v7"}}
+      ],
+      "edges": [
+        {"id": "e67", "source": "v6", "target": "v7", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "e67"}}
+      ]
+    },
+    {
+      "id": "P3",
+      "track": "false",
+      "probability": "0.3",
+      "vertices": [
+        {"id": "v8", "new": "true", "attributes": {"label": "v8"}},
+        {"id": "v9", "new": "true", "attributes": {"label": "v9"}}
+      ],
+      "edges": [
+        {"id": "e89", "source": "v8", "target": "v9", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "e89", "foo": "bar"}}
+      ]
+    },
+    {
+      "id": "P3R",
+      "probability": "1.0",
+      "track": "false",
+      "vertices": [
+        {"id": "vold1", "new": "false"},
+        {"id": "vold2", "new": "false"}
+      ],
+      "edges": [
+        {"id": "eXY", "source": "vold1", "target": "vold2", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "3", "attributes": {"label": "eXY"}}
+      ]
+    }
+  ]
+}

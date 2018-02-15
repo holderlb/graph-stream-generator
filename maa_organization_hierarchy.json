@@ -1,0 +1,59 @@
+{
+  "numStreams": "3",
+  "streamBackGroundModels": ["PA", "Comm"],
+  "secondsPerUnitTime": "1",
+  "startTime": "2017-05-11 14:00:00",
+  "duration": "100",
+  "outputTimeFormat": "units",
+  "outputFilePrefix": "test-maa-dense-comm",
+  "patterns": [
+    {
+      "id": "Triangle0",
+      "track": "true",
+      "probability": "0.10",
+      "vertices": [
+        {"id": "v1", "new": "true", "attributes": {"label": "person11"}},
+        {"id": "v2", "new": "true", "attributes": {"label": "person12"}},
+        {"id": "v3", "new": "true", "attributes": {"label": "person21"}}
+      ],
+      "edges": [
+        {"id": "e13", "source": "v1", "target": "v3", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
+        {"id": "e12", "source": "v1", "target": "v2", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
+        {"id": "e23", "source": "v2", "target": "v3", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "1", "attributes": {"label": "mentions"}}
+      ]
+    },
+
+        {
+      "id": "Triangle1",
+      "track": "true",
+      "probability": "0.5",
+      "vertices": [
+        {"id": "v1", "new": "true", "attributes": {"label": "person11"}},
+        {"id": "v2", "new": "true", "attributes": {"label": "person12"}},
+        {"id": "v3", "new": "false", "attributes": {"label": "person21"}}
+      ],
+      "edges": [
+        {"id": "e13", "source": "v1", "target": "v3", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
+        {"id": "e12", "source": "v1", "target": "v2", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
+        {"id": "e23", "source": "v2", "target": "v3", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "1", "attributes": {"label": "mentions"}}
+      ]
+    },
+
+        {
+      "id": "Triangle0",
+      "track": "true",
+      "probability": "0.5",
+      "vertices": [
+        {"id": "v1", "new": "true", "attributes": {"label": "person11"}},
+        {"id": "v2", "new": "false", "attributes": {"label": "person12"}},
+        {"id": "v3", "new": "false", "attributes": {"label": "person21"}}
+      ],
+      "edges": [
+        {"id": "e13", "source": "v1", "target": "v3", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
+        {"id": "e12", "source": "v1", "target": "v2", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
+        {"id": "e23", "source": "v2", "target": "v3", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "1", "attributes": {"label": "mentions"}}
+      ]
+    }
+
+  ]
+}
