@@ -16,16 +16,20 @@ from datetime import datetime
 from datetime import timedelta
 import random
 from gsgClasses import *
+import scipy.stats as ss
+import numpy as np
 
 
 # ----- Global variables -----
 
 global gParameters
 global gPatterns
+global gSeedPatterns
 global gStreamFiles
 global gInstancesFile
 global gWroteAnInstance # True if wrote at least one instance already
 global gStreamVertices  # list where gStreamVertices[i] = list of vertices in stream i+1
+global gStreamVerticesDeg  # list where gStreamVertices[i] = list of degree of vertices in stream i+1
 global gStreamSchedules # list of streams, where gStreamSchedules[i] = list of scheduled vertices and edges for stream i+1
 global gStreamWrittenTo # list of Booleans, where gStreamWrittenTo[i] = True if some vertex written to stream
 global gNumVertices     # total number of unique vertices written to streams
@@ -82,10 +86,29 @@ def ParseEdges(jsonData, vertices, streamNum=None):
         edges.append(edge)
     return edges
 
-def ParsePatterns(jsonData):
+def ParsePatterns(jsonData,baseJsonData=None):
     print('Parsing patterns...')
     global gPatterns
+    global gSeedPatterns
     gPatterns = []
+    gSeedPatterns = []
+
+    for jsonPattern in baseJsonData:
+        pattern = Pattern()
+        pattern.id = jsonPattern['id']
+        if (jsonPattern['track'] == "true"):
+            pattern.track = True
+        else:
+            pattern.track = False
+        pattern.probability = float(jsonPattern['probability'])
+        if ((pattern.probability < 0.0) or (pattern.probability > 1.0)):
+            print("Error: probability out of range for pattern " + pattern.id)
+            sys.exit()
+        pattern.vertices = ParseVertices(jsonPattern['vertices'])
+        pattern.edges = ParseEdges(jsonPattern['edges'], pattern.vertices)
+        if ValidPattern(pattern):
+            gSeedPatterns.append(pattern)
+
     for jsonPattern in jsonData:
         pattern = Pattern()
         pattern.id = jsonPattern['id']
@@ -133,6 +156,8 @@ def ParseAppendPatterns(jsonData, streamNum):
 
 def ValidPattern(pattern):
     # Check that all edges to an old vertex in same stream
+    # NOTE : SUMIT: should we allow to use old vertex in each specified stream ? Ex:
+    # a 4-node ring graph where each edge is in different stream .
     for vertex in pattern.vertices:
         if (not vertex.new):
             oldVertexStreamNum = -1
@@ -178,7 +203,7 @@ def CloseFiles():
 
 def AddPatternInstance(pattern, timeUnit):
     global gNumEdges
-    print("Adding instance of pattern " + pattern.id + " at time " + str(timeUnit))
+    #print("Adding instance of pattern " + pattern.id + " at time " + str(timeUnit))
     vertexInstancesDict = {}
     edgeInstances = []
     patternCreated = True
@@ -288,11 +313,30 @@ def GetVertexById(id, vertices):
 # Returns 0 if none exists.
 def GetRandomVertexIdOnStream(streamNum, usedVertexIds):
     global gStreamVertices
+    global gStreamVerticesDeg
     streamVertices = gStreamVertices[streamNum-1]
+    streamVerticesDeg = gStreamVerticesDeg[streamNum - 1]
     numStreamVertices = len(streamVertices)
     if (numStreamVertices > 0):
         # Get a random starting point
         randomVertexIndex = random.randint(0,numStreamVertices-1)
+        #randomVertexIndex = int(ss.powerlaw.rvs(.3, loc = 0, scale = numStreamVertices-1, size = 1))
+        # get randomVertexIndex proportional to its degree
+        # print "this stream deg is "
+        # print gStreamVerticesDeg
+        sumOfDegree = sum(streamVerticesDeg)
+        # print "sum is " + str(sumOfDegree)
+        streamVerticesProb = list(map((lambda x: x/float(sumOfDegree)), streamVerticesDeg))
+        streamVerticesProbAccum = np.cumsum(streamVerticesProb)
+        # print streamVerticesProbAccum
+        drwaProb = random.uniform(0, 1)
+        #randomVertexIndex = (x for x in range(len(streamVerticesProbAccum)) if streamVerticesProbAccum[x] >= drwaProb).next()
+        # print "deg list"
+        # print gStreamVerticesDeg
+        # print "used vertex is "
+        # print usedVertexIds
+        # print "draw prob " + str(drwaProb)
+        # print "selected : " + str(randomVertexIndex)
         numTries = 0
         while (numTries < numStreamVertices):
             # Keep incrementing from random starting point until non-used vertex id found, or tried them all
@@ -300,6 +344,7 @@ def GetRandomVertexIdOnStream(streamNum, usedVertexIds):
             if (randomVertexId not in usedVertexIds):
                 return randomVertexId
             randomVertexIndex += 1
+            #randomVertexIndex = int(ss.powerlaw.rvs(.3, loc=0, scale=numStreamVertices - 1, size=1))
             if (randomVertexIndex == numStreamVertices):
                 randomVertexIndex = 0
             numTries += 1
@@ -309,16 +354,22 @@ def GenerateStreams():
     print('Generating streams...')
     global gParameters
     global gPatterns
+    global gSeedPatterns
     global gNumVertices
     global gNumEdges
     global gStreamVertices
+    global gStreamVerticesDeg
     global gStreamSchedules
     global gStreamWrittenTo
     gNumVertices = 0
     gNumEdges = 0
     gStreamVertices = [[] for x in xrange(gParameters.numStreams)] # list of numStreams empty lists
+    gStreamVerticesDeg = [[] for x in xrange(gParameters.numStreams)]  # list of numStreams empty lists
     gStreamSchedules = [[] for x in xrange(gParameters.numStreams)] # list of numStreams empty lists
     gStreamWrittenTo = [False for x in xrange(gParameters.numStreams)]
+    #Add base graph first with probability = 1
+    for pattern in gSeedPatterns:
+            AddPatternInstance(pattern, 0)
     for timeUnit in range(0,gParameters.duration):
         for pattern in gPatterns:
             if (pattern.probability >= random.uniform(0,1)):
@@ -342,6 +393,7 @@ def SchedulesEmpty():
 def ProcessStreamSchedules(timeUnit):
     global gParameters
     global gStreamVertices
+    global gStreamVerticesDeg
     global gStreamSchedules
     for streamIndex in range(0,gParameters.numStreams):
         for item in list(gStreamSchedules[streamIndex]):
@@ -350,12 +402,29 @@ def ProcessStreamSchedules(timeUnit):
                 if (vertexInstance.streamCreationTimes[streamIndex+1] == timeUnit):
                     WriteVertexInstanceToStream(vertexInstance, streamIndex+1)
                     gStreamVertices[streamIndex].append(vertexInstance.id)
+                    # initialized the degree of node by zero;
+                    # vertex index should be found in gStreamVertices[streamIndex]
+                    #print "adding new vertex "
+                    gStreamVerticesDeg[streamIndex].append(0)
+                    #print gStreamVerticesDeg
                     gStreamSchedules[streamIndex].remove(vertexInstance)
             else: # item must be an edge instance
                 edgeInstance = item
                 if (edgeInstance.creationTime == timeUnit):
                     WriteEdgeInstanceToStream(edgeInstance, streamIndex+1)
                     gStreamSchedules[streamIndex].remove(edgeInstance)
+                    #update degree of sourc and destination
+                    # get degree of source vertex
+                    # first get is index
+                    # print "adding new edge. now updating deg"
+                    srcIndex = gStreamVertices[streamIndex].index(edgeInstance.source)
+                    # print "src index is " + str(srcIndex)
+                    gStreamVerticesDeg[streamIndex][srcIndex] = gStreamVerticesDeg[streamIndex][srcIndex] + 1
+                    dstIndex = gStreamVertices[streamIndex].index(edgeInstance.target)
+                    # print "dst index is " + str(dstIndex)
+                    gStreamVerticesDeg[streamIndex][dstIndex] = gStreamVerticesDeg[streamIndex][dstIndex] + 1
+                    # print "udpated gdeg list"
+                    # print gStreamVerticesDeg
 
 def WriteVertexInstanceToStream(vertexInstance, streamNum):
     global gStreamFiles
@@ -368,7 +437,7 @@ def WriteVertexInstanceToStream(vertexInstance, streamNum):
     streamFile.write('  {"vertex": {\n')
     streamFile.write('     "id": "' + str(vertexInstance.id) + '",\n')
     streamFile.write('     "attributes": ' + DictToJSONString(vertexInstance.attributes) + ',\n')
-    streamFile.write('     "timeStamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
+    streamFile.write('     "timestamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
 
 def WriteEdgeInstanceToStream(edgeInstance, streamNum):
     global gStreamFiles
@@ -384,7 +453,7 @@ def WriteEdgeInstanceToStream(edgeInstance, streamNum):
         streamFile.write('     "directed": "true",\n')
     else:
         streamFile.write('     "directed": "false",\n')
-    streamFile.write('     "timeStamp": "' + TimeStr(edgeInstance.creationTime) + '"}}')
+    streamFile.write('     "timestamp": "' + TimeStr(edgeInstance.creationTime) + '"}}')
 
 # Convert timeUnit to string according to output time format
 def TimeStr(timeUnit):
@@ -401,14 +470,17 @@ def TimeStr(timeUnit):
 def main():
     global gParameters
     global gPatterns
+    global gSeedPatterns
     inputFileName = sys.argv[1]
     with open(inputFileName) as inputFile:
         jsonData = json.load(inputFile)
+    with open("seedGraph.json") as seedGraphFile:
+        baseJsonData = json.load(seedGraphFile)
     gParameters = Parameters()
     gParameters.parseFromJSON(jsonData)
     print('Graph Stream Generator v1.0\n')
     gParameters.prettyprint()
-    ParsePatterns(jsonData['patterns'])
+    ParsePatterns(jsonData['patterns'],baseJsonData['patterns'])
     ParseBackgroundPatterns(jsonData['streamBackGroundModels'])
     for pattern in gPatterns:
         pattern.prettyprint()

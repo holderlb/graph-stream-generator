@@ -15,10 +15,10 @@ def generateGraphML(inputFileName):
                  'http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">\n')
 
     target.write('<key id="label" for="node" attr.name="label" attr.type="string"/>\n')
-    target.write('<key id="timeStamp" for="node" attr.name="timeStamp" attr.type="string"/>\n')
+    target.write('<key id="timestamp" for="node" attr.name="timestamp" attr.type="string"/>\n')
 
     target.write('<key id="label" for="edge" attr.name="label" attr.type="string"/>\n')
-    target.write('<key id="timeStamp" for="edge" attr.name="timeStamp" attr.type="string"/>\n')
+    target.write('<key id="timestamp" for="edge" attr.name="timestamp" attr.type="string"/>\n')
     target.write('<key id="directed" for="edge" attr.name="directed" attr.type="string"/>\n')
 
     target.write('<graph id="GSG_V1" edgedefault="directed">\n')
@@ -40,13 +40,13 @@ def generateGraphML(inputFileName):
                         key, val = attr.split(':') # [0]="label" [1]="v8" with '"'
                         target.write(twoIndent +'<data key='+ key.strip() + '>' + val.strip() + '</data>\n')
 
-                    # Get Timestamp
-                    timestampLine = next(infile) #     "timeStamp": "5"}},\n
-                    vTimestamp = timestampLine.split('"timeStamp": ')[1][:-4]
-                    # Very last timeStamp entry does not end with "," which make the subscript invalid
-                    if vTimestamp.endswith('"') == False:
-                        vTimestamp = vTimestamp + '"'
-                    target.write(twoIndent +'<data key="timeStamp">' + vTimestamp + '</data>\n')
+                    # Get timestamp
+                    timestampLine = next(infile) #     "timestamp": "5"}},\n
+                    vtimestamp = timestampLine.split('"timestamp": ')[1][:-4]
+                    # Very last timestamp entry does not end with "," which make the subscript invalid
+                    if vtimestamp.endswith('"') == False:
+                        vtimestamp = vtimestamp + '"'
+                    target.write(twoIndent +'<data key="timestamp">' + vtimestamp + '</data>\n')
                     target.write(oneIndent +'</node>\n')
 
                 elif line.startswith('  {"edge": {'):
@@ -78,14 +78,14 @@ def generateGraphML(inputFileName):
                     eDir = edirLine.split('"directed": ')[1][:-2]
                     target.write(twoIndent +'<data key="directed">' + eDir + '</data>\n')
 
-                    # Get Timestamp
-                    timestampLine = next(infile) #     "timeStamp": "5"}},\n
-                    eTimestamp = timestampLine.split('"timeStamp": ')[1][:-4]
+                    # Get timestamp
+                    timestampLine = next(infile) #     "timestamp": "5"}},\n
+                    etimestamp = timestampLine.split('"timestamp": ')[1][:-4]
 
-                    # Very last timeStamp entry does not end with "," which make the subscript invalid
-                    if eTimestamp.endswith('"') == False:
-                        eTimestamp = eTimestamp + '"'
-                    target.write(twoIndent +'<data key="timeStamp">' + eTimestamp + '</data>\n')
+                    # Very last timestamp entry does not end with "," which make the subscript invalid
+                    if etimestamp.endswith('"') == False:
+                        etimestamp = etimestamp + '"'
+                    target.write(twoIndent +'<data key="timestamp">' + etimestamp + '</data>\n')
 
                     # End of Edge
                     target.write(oneIndent + '</edge>\n')
