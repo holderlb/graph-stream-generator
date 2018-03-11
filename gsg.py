@@ -103,7 +103,8 @@ def ParsePatterns(jsonData,baseJsonData=None):
         pattern.probability = float(jsonPattern['probability'])
         if ((pattern.probability < 0.0) or (pattern.probability > 1.0)):
             print("Error: probability out of range for pattern " + pattern.id)
-            sys.exit()
+            #sys.exit()
+            pattern.probability = 1
         pattern.vertices = ParseVertices(jsonPattern['vertices'])
         pattern.edges = ParseEdges(jsonPattern['edges'], pattern.vertices)
         if ValidPattern(pattern):
@@ -119,7 +120,8 @@ def ParsePatterns(jsonData,baseJsonData=None):
         pattern.probability = float(jsonPattern['probability'])
         if ((pattern.probability < 0.0) or (pattern.probability > 1.0)):
             print("Error: probability out of range for pattern " + pattern.id)
-            sys.exit()
+            #sys.exit()
+            pattern.probability = 1
         pattern.vertices = ParseVertices(jsonPattern['vertices'])
         pattern.edges = ParseEdges(jsonPattern['edges'], pattern.vertices)
         if ValidPattern(pattern):
