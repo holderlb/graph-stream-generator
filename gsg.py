@@ -426,7 +426,7 @@ def ProcessStreamSchedules(timeUnit):
                     # print "udpated gdeg list"
                     # print gStreamVerticesDeg
 
-def WriteVertexInstanceToStream(vertexInstance, streamNum):
+def WriteVertexInstanceToStreamBkp(vertexInstance, streamNum):
     global gStreamFiles
     global gStreamWrittenTo
     streamFile = gStreamFiles[streamNum-1]
@@ -439,7 +439,38 @@ def WriteVertexInstanceToStream(vertexInstance, streamNum):
     streamFile.write('     "attributes": ' + DictToJSONString(vertexInstance.attributes) + ',\n')
     streamFile.write('     "timestamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
 
+def WriteVertexInstanceToStream(vertexInstance, streamNum):
+    global gStreamFiles
+    global gStreamWrittenTo
+    streamFile = gStreamFiles[streamNum-1]
+    #if gStreamWrittenTo[streamNum-1]:
+        #streamFile.write(',\n')
+    #else:
+        #gStreamWrittenTo[streamNum-1] = True
+    #streamFile.write('  {"vertex": {\n')
+    #streamFile.write('     "id": "' + str(vertexInstance.id) + '",\n')
+    #streamFile.write('     "attributes": ' + DictToJSONString(vertexInstance.attributes) + ',\n')
+    #streamFile.write('     "timestamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
+
+
 def WriteEdgeInstanceToStream(edgeInstance, streamNum):
+    global gStreamFiles
+    global gStreamWrittenTo
+    streamFile = gStreamFiles[streamNum-1]
+    streamFile.write('\n') # some vertices must have already been written
+    #streamFile.write('  {"edge": {\n')
+    #streamFile.write('     "id": "' + str(edgeInstance.id) + '",\n')
+    streamFile.write(str(edgeInstance.source) + ' ' + DictToJSONString(edgeInstance.attributes) + ' ' + str(edgeInstance.target) + ' ' + TimeStr(edgeInstance.creationTime) )
+    #streamFile.write('     "source": "' + str(edgeInstance.source) + '",\n')
+    #streamFile.write('     "target": "' + str(edgeInstance.target) + '",\n')
+    #streamFile.write('     "attributes": ' + DictToJSONString(edgeInstance.attributes) + ',\n')
+    #if edgeInstance.directed:
+    #    streamFile.write('     "directed": "true",\n')
+    #else:
+    #    streamFile.write('     "directed": "false",\n')
+    #streamFile.write('     "timestamp": "' + TimeStr(edgeInstance.creationTime) + '"}}')
+
+def WriteEdgeInstanceToStreamBkp(edgeInstance, streamNum):
     global gStreamFiles
     global gStreamWrittenTo
     streamFile = gStreamFiles[streamNum-1]
