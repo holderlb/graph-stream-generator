@@ -3,98 +3,66 @@
     {
       "id": "BlaBla123",
       "track": "true",
-      "probability": "0.5",
+      "probability": "0.2",
       "vertices": [
         {"id": "v1", "new": "true", "attributes": {"label": "person11"}},
         {"id": "v2", "new": "true", "attributes": {"label": "person12"}},
         {"id": "v3", "new": "true", "attributes": {"label": "person21"}},
         {"id": "v4", "new": "true", "attributes": {"label": "person22"}},
         {"id": "v5", "new": "true", "attributes": {"label": "person31"}},
-        {"id": "v6", "new": "true", "attributes": {"label": "person32"}},
-        {"id": "v7", "new": "true", "attributes": {"label": "product41"}}
+        {"id": "v6", "new": "false", "attributes": {"label": "person32"}},
+        {"id": "v7", "new": "false", "attributes": {"label": "product41"}}
       ],
       "edges": [
-        {"id": "e13", "source": "v1", "target": "v3", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
-        {"id": "e14", "source": "v1", "target": "v4", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}},
-        {"id": "e23", "source": "v2", "target": "v3", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "1", "attributes": {"label": "mentions"}},
-        {"id": "e34", "source": "v3", "target": "v4", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "2", "attributes": {"label": "calls"}},
-        {"id": "e35", "source": "v3", "target": "v5", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "2", "attributes": {"label": "calls"}},
-        {"id": "e36", "source": "v3", "target": "v6", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "2", "attributes": {"label": "calls"}},
-        {"id": "e45", "source": "v4", "target": "v5", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "2", "attributes": {"label": "calls"}},
-        {"id": "e57", "source": "v5", "target": "v7", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "3", "attributes": {"label": "bought"}}
+        {"id": "e13", "source": "v1", "target": "v3", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e14", "source": "v1", "target": "v4", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e23", "source": "v2", "target": "v3", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e34", "source": "v3", "target": "v4", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e35", "source": "v3", "target": "v5", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e36", "source": "v3", "target": "v6", "directed": "true", "minOffset": "5", "maxOffset": "7", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e45", "source": "v4", "target": "v5", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e57", "source": "v5", "target": "v7", "directed": "true", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}}
       ]
     },
     {
       "id": "P11",
       "track": "false",
-      "probability": "0.9",
+      "probability": "0.2",
       "vertices": [
-        {"id": "v4", "new": "true", "attributes": {"label": "person4"}},
-        {"id": "v5", "new": "true", "attributes": {"label": "person5"}}
+        {"id": "v4", "new": "false", "attributes": {"label": "person4"}},
+        {"id": "v5", "new": "false", "attributes": {"label": "person5"}},
+        {"id": "v3", "new": "false", "attributes": {"label": "person5"}}
       ],
       "edges": [
-        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}}
+        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+         {"id": "e35", "source": "v3", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+         {"id": "e34", "source": "v3", "target": "v4", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}}
       ]
     },
     {
       "id": "P12",
       "track": "false",
-      "probability": "0.9",
+      "probability": "0.6",
       "vertices": [
         {"id": "v4", "new": "true", "attributes": {"label": "person4"}},
-        {"id": "v5", "new": "false", "attributes": {"label": "person5"}}
+        {"id": "v5", "new": "true", "attributes": {"label": "person5"}}
       ],
       "edges": [
-        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}}
+        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}}
       ]
     },
     {
       "id": "P13",
       "track": "false",
-      "probability": "0.9",
+      "probability": "0.2",
       "vertices": [
-        {"id": "v4", "new": "false", "attributes": {"label": "person4"}},
-        {"id": "v5", "new": "false", "attributes": {"label": "person5"}}
+        {"id": "v4", "new": "true", "attributes": {"label": "person4"}},
+        {"id": "v5", "new": "true", "attributes": {"label": "person5"}},
+        {"id": "v1", "new": "true", "attributes": {"label": "person5"}}
       ],
       "edges": [
-        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "mentions"}}
-      ]
-    },
-    {
-      "id": "P21",
-      "track": "false",
-      "probability": "0.5",
-      "vertices": [
-        {"id": "v6", "new": "true", "attributes": {"label": "person6"}},
-        {"id": "v7", "new": "true", "attributes": {"label": "person7"}}
-      ],
-      "edges": [
-        {"id": "e67", "source": "v6", "target": "v7", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "2", "attributes": {"label": "phoneCallTo"}}
-      ]
-    },
-    {
-      "id": "P22",
-      "track": "false",
-      "probability": "0.7",
-      "vertices": [
-        {"id": "v6", "new": "false", "attributes": {"label": "person6"}},
-        {"id": "v7", "new": "false", "attributes": {"label": "person7"}}
-      ],
-      "edges": [
-        {"id": "e67", "source": "v6", "target": "v7", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "2", "attributes": {"label": "phoneCallTo"}}
-      ]
-    },
-
-    {
-      "id": "BlaBla001",
-      "track": "false",
-      "probability": "0.3",
-      "vertices": [
-        {"id": "v8", "new": "false", "attributes": {"label": "org8"}},
-        {"id": "v9", "new": "false", "attributes": {"label": "product9"}}
-      ],
-      "edges": [
-        {"id": "e89", "source": "v8", "target": "v9", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "3", "attributes": {"label": "bought", "foo": "bar"}}
+        {"id": "e45", "source": "v4", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}},
+        {"id": "e15", "source": "v1", "target": "v5", "directed": "false", "minOffset": "0", "maxOffset": "0", "streamNum": "1", "attributes": {"label": "ops"}}
       ]
     }
   ]
