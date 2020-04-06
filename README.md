@@ -8,7 +8,11 @@ Support: This material is based upon work supported by the National Science Foun
 
 ## Running
 
+To run GSG and generate output files:
+
 ```python3 gsg.py <inputFile.json>```
+
+To convert GSG output graphs to GraphML:
 
 ```python3 gExportGraphML.py <graphFile.json>```
 
