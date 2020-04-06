@@ -31,7 +31,7 @@ There are a few required global parameters to the Graph Stream Generator (GSG).
 
 ### Pattern
 
-A pattern describes a subgraph (set of vertices and edges) that are probabilistically-added to the graph streams. Vertices can be new, or drawn from earlier in the stream. Edges are assigned to a specific stream and scheduled according to a uniform offset range from the initial time unit when the pattern is chosen. Each vertex and edge can have a set of attribute-value pairs. Specifically, a pattern consists of the following properties (all required):
+A pattern describes a subgraph (set of vertices and edges) that are probabilistically-added to the graph streams. Vertices can be new, or drawn from earlier in the stream. Edges are assigned to a specific stream and scheduled according to a uniform offset range from the initial time unit when the pattern is chosen. Each vertex and edge can have a set of attribute-value pairs and an optional type. Specifically, a pattern consists of the following properties (all required):
 
 * **id**: String identifier for this pattern, which is used to identify pattern instances in the output instances file.
 * **track**: Whether or not this pattern's instances should be output to the instances file. Value is "true" or "false".
