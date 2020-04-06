@@ -65,11 +65,14 @@ class Vertex:
     def __init__(self):
         self.id = ""
         self.new = True
+        self.type = None
         self.attributes = {} # dictionary
     
     def prettyprint(self, tab = ''):
         print(tab + 'Vertex:')
         print(tab + '  id = ' + self.id)
+        if self.type:
+            print(tab + '  type = ' + self.type)
         if (self.new):
             print(tab + '  new = true')
         else:
@@ -80,6 +83,7 @@ class Vertex:
 class Edge:
     def __init__(self):
         self.id = ""
+        self.type = None
         self.source = ""
         self.target = ""
         self.directed = False
@@ -93,6 +97,8 @@ class Edge:
         print(tab + '  id = ' + self.id)
         print(tab + '  source = ' + self.source)
         print(tab + '  target = ' + self.target)
+        if self.type:
+            print(tab + '  type = ' + self.type)
         if (self.directed):
             print(tab + '  directed = true')
         else:
@@ -112,6 +118,7 @@ class PatternInstance:
 class VertexInstance:
     def __init__(self):
         self.id = 0
+        self.type = None
         self.attributes = []
         self.streamCreationTimes = {} # dictionary with entries {streamNum: creationTime} in time units; one for each stream needing new vertex (empty means exists)
 
@@ -121,6 +128,7 @@ class EdgeInstance:
         self.source = 0
         self.target = 0
         self.directed = False
+        self.type = None
         self.attributes = []
         self.streamNum = 0
         self.creationTime = 0 # in time units

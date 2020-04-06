@@ -15,9 +15,11 @@ def generateGraphML(inputFileName):
                  'http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">\n')
 
     target.write('<key id="label" for="node" attr.name="label" attr.type="string"/>\n')
+    target.write('<key id="type" for="node" attr.name="type" attr.type="string"/>\n')
     target.write('<key id="timestamp" for="node" attr.name="timestamp" attr.type="string"/>\n')
 
     target.write('<key id="label" for="edge" attr.name="label" attr.type="string"/>\n')
+    target.write('<key id="type" for="edge" attr.name="type" attr.type="string"/>\n')
     target.write('<key id="timestamp" for="edge" attr.name="timestamp" attr.type="string"/>\n')
     target.write('<key id="directed" for="edge" attr.name="directed" attr.type="string"/>\n')
 
@@ -31,9 +33,19 @@ def generateGraphML(inputFileName):
                     idLine = next(infile) #     "id": "27",\n
                     vid = idLine.split('"id": ')[1][:-2] # "27"
                     target.write(oneIndent +'<node id=' + vid + '>\n')
-
+                    
+                    #Check for 'type' (optional)
+                    typeLine = next(infile) #    "type": "user",\n
+                    if typeLine.startswith('     "type":'):
+                        typeComponents = typeLine.split(' ')
+                        vType = typeComponents[-1][:-2]
+                        target.write(twoIndent +'<data key="type">' + vType + '</data>\n')
+                        attrLine = next(infile)
+                    else:
+                        attrLine = typeLine
+                    
                     #Get Attributes
-                    attrLine = next(infile) #    "attributes": {"label": "v8"},\n
+                    #attrLine = next(infile) #    "attributes": {"label": "v8"},\n
                     allAttrs = attrLine.split('"attributes": {')[1][:-3] # "label": "v8"
                     allAttrArray = allAttrs.split(',')
                     for attr in allAttrArray:
@@ -58,15 +70,24 @@ def generateGraphML(inputFileName):
                     srcLine = next(infile)
                     src = srcLine.split('"source": ')[1][:-2]
 
-
                     # Get Destination
                     dstLine = next(infile)
                     dst = dstLine.split('"target": ')[1][:-2]
 
                     target.write(oneIndent +'<edge id='+ eId + ' source=' + src + ' target=' + dst + '>\n')
 
+                    #Check for 'type' (optional)
+                    typeLine = next(infile) #    "type": "user",\n
+                    if typeLine.startswith('     "type":'):
+                        typeComponents = typeLine.split(' ')
+                        eType = typeComponents[-1][:-2]
+                        target.write(twoIndent +'<data key="type">' + eType + '</data>\n')
+                        attrLine = next(infile)
+                    else:
+                        attrLine = typeLine
+                        
                     # Get Attributes
-                    attrLine = next(infile)  # {"foo": "bar", "label": "e89"},\n
+                    #attrLine = next(infile)  # {"foo": "bar", "label": "e89"},\n
                     allAttrs = attrLine.split('"attributes": {')[1][:-3]  # "label": "v8", "label": "e89"
                     allAttrArray = allAttrs.split(',')
                     for attr in allAttrArray:
@@ -95,7 +116,7 @@ def generateGraphML(inputFileName):
 
     target.write('</graph>\n')
     target.write('</graphml>\n')
-    print "****Finish: Export " + inputFileName + " to Format = " + exportFormat + ". " +inputFileName + ".grpahml generated \n"
+    print("****Finish: Export " + inputFileName + " to Format = " + exportFormat + ". " +inputFileName + ".graphml generated \n")
 
 def main():
 
@@ -103,14 +124,14 @@ def main():
     exportFormat = "GraphML"
 
     if len(sys.argv) < 2:
-        print "Usage: python gExportGraphML.py <input json file> [exportFormat=GraphMl]"
+        print("Usage: python gExportGraphML.py <input json file> [exportFormat=GraphMl]")
 
     if len(sys.argv) > 1:
         inputFileName = sys.argv[1]
     if len(sys.argv) > 2:
         exportFormat = sys.argv[2]
 
-    print "****Start: Export " + inputFileName + " to Format = " + exportFormat + "\n"
+    print("****Start: Export " + inputFileName + " to Format = " + exportFormat + "\n")
 
     if exportFormat == "GraphML":
         generateGraphML(inputFileName)

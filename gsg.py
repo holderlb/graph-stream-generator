@@ -39,6 +39,8 @@ def ParseVertices(jsonData):
     for jsonVertex in jsonData:
         vertex = Vertex()
         vertex.id = jsonVertex['id']
+        if 'type' in jsonVertex:
+            vertex.type = jsonVertex['type']
         if (jsonVertex['new'] == "true"):
             vertex.new = True
             vertex.attributes = jsonVertex['attributes']
@@ -54,6 +56,8 @@ def ParseEdges(jsonData, vertices):
     for jsonEdge in jsonData:
         edge = Edge()
         edge.id = jsonEdge['id']
+        if 'type' in jsonEdge:
+            edge.type = jsonEdge['type']
         edge.source = jsonEdge['source']
         if (GetVertexById(edge.source, vertices) == None):
             print("Error: Source vertex in edge " + edge.id + " not defined")
@@ -152,6 +156,7 @@ def AddPatternInstance(pattern, timeUnit):
     patternCreated = True
     for edge in pattern.edges:
         edgeInstance = EdgeInstance()
+        edgeInstance.type = edge.type
         edgeInstance.directed = edge.directed
         edgeInstance.attributes = edge.attributes
         edgeInstance.streamNum = edge.streamNum
@@ -234,6 +239,7 @@ def GetVertexInstanceId(vertex, edgeInstance, vertexInstancesDict):
     else:
         # Create new vertex instance
         vertexInstance = VertexInstance()
+        vertexInstance.type = vertex.type
         vertexInstance.attributes = vertex.attributes
         if (vertex.new):
             gNumVertices += 1
@@ -284,9 +290,9 @@ def GenerateStreams():
     global gStreamWrittenTo
     gNumVertices = 0
     gNumEdges = 0
-    gStreamVertices = [[] for x in xrange(gParameters.numStreams)] # list of numStreams empty lists
-    gStreamSchedules = [[] for x in xrange(gParameters.numStreams)] # list of numStreams empty lists
-    gStreamWrittenTo = [False for x in xrange(gParameters.numStreams)]
+    gStreamVertices = [[] for x in range(gParameters.numStreams)] # list of numStreams empty lists
+    gStreamSchedules = [[] for x in range(gParameters.numStreams)] # list of numStreams empty lists
+    gStreamWrittenTo = [False for x in range(gParameters.numStreams)]
     for timeUnit in range(0,gParameters.duration):
         for pattern in gPatterns:
             if (pattern.probability >= random.uniform(0,1)):
@@ -335,6 +341,8 @@ def WriteVertexInstanceToStream(vertexInstance, streamNum):
         gStreamWrittenTo[streamNum-1] = True
     streamFile.write('  {"vertex": {\n')
     streamFile.write('     "id": "' + str(vertexInstance.id) + '",\n')
+    if vertexInstance.type:
+        streamFile.write('     "type": "' + vertexInstance.type + '",\n')
     streamFile.write('     "attributes": ' + DictToJSONString(vertexInstance.attributes) + ',\n')
     streamFile.write('     "timestamp": "' + TimeStr(vertexInstance.streamCreationTimes[streamNum]) + '"}}')
 
@@ -347,6 +355,8 @@ def WriteEdgeInstanceToStream(edgeInstance, streamNum):
     streamFile.write('     "id": "' + str(edgeInstance.id) + '",\n')
     streamFile.write('     "source": "' + str(edgeInstance.source) + '",\n')
     streamFile.write('     "target": "' + str(edgeInstance.target) + '",\n')
+    if edgeInstance.type:
+        streamFile.write('     "type": "' + edgeInstance.type + '",\n')
     streamFile.write('     "attributes": ' + DictToJSONString(edgeInstance.attributes) + ',\n')
     if edgeInstance.directed:
         streamFile.write('     "directed": "true",\n')
